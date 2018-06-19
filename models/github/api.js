@@ -2,11 +2,26 @@
 
 const request = require('request-promise-native')
 
-function searchRepositories(query = {}) {}
+const API_URL = 'https://api.github.com'
+const USER_AGENT = 'risingstack'
 
-function getContributors(repository, query = {}) {}
+const searchRepositories = (query = {}) => request({
+  method: 'GET',
+  url: `${API_URL}/search/repositories`,
+  qs: query,
+  headers: {
+    Accept: 'application/vnd.github.v3+json',
+    'user-agent': USER_AGENT
+  },
+  json: true
+})
+/*
+
+const getContributors = (repository, query = {}) => {
+
+}
+*/
 
 module.exports = {
   searchRepositories,
-  getContributors
 }

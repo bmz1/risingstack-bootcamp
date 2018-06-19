@@ -8,6 +8,8 @@ const envVarsSchema = joi.object({
 }).unknown()
   .required()
 
+console.log(process.env)
+
 const envVars = joi.attempt(process.env, envVarsSchema)
 
 const config = {
