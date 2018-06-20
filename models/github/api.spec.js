@@ -20,5 +20,21 @@ describe('GitHub API', () => {
     expect(githubAPI.isDone()).to.eql(true)
     expect(result).to.eql({ items: [] })
   })
+
+  it('should get contributors', async () => {
+    const repository = 'owner/repository'
+    const githubAPI = nock('https://api.github.com', {
+      reqheaders: {
+        accept: 'application/vnd.github.v3+json',
+        'user-agent': 'risingstack'
+      }
+    })
+      .get(`/repos/${repository}/stats/contributors`)
+      .reply(200, [{ author: {}, weeks: [] }])
+
+    const result = await api.getContributors(repository)
+    expect(githubAPI.isDone()).to.eql(true)
+    expect(result).to.eql([{ author: {}, weeks: [] }])
+  })
 })
 

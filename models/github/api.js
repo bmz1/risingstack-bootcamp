@@ -15,13 +15,20 @@ const searchRepositories = (query = {}) => request({
   },
   json: true
 })
-/*
 
-const getContributors = (repository, query = {}) => {
+const getContributors = (repository, query = {}) => request({
+  method: 'GET',
+  url: `${API_URL}/repos/${repository}/stats/contributors`,
+  qs: query,
+  headers: {
+    Accept: 'application/vnd.github.v3+json',
+    'User-Agent': USER_AGENT
+  },
+  json: true
+})
 
-}
-*/
 
 module.exports = {
   searchRepositories,
+  getContributors
 }
