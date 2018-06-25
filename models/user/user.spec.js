@@ -4,7 +4,7 @@ const { expect } = require('chai')
 const db = require('../db')
 const User = require('./user')
 
-describe.only('User', () => {
+describe('User', () => {
   let id
   let sampleUser
 
